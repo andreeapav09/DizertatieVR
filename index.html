@@ -4,15 +4,35 @@
     <meta charset="utf-8">
     <title>Hello, World! - A-Frame</title>
     <meta name="description" content="Hello, World! - A-Frame">
-    <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script>
+ 
+      AFRAME.registerComponent("foo", {
+      init: function() {
+        let self = this.el
+        this.el.addEventListener("click", (e)=>{
+              var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() { 
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                self.children[0].setAttribute("value", this.responseText);
+        }
+        xmlHttp.open("GET", 'http://dummy.restapiexample.com/api/v1/employees', true); // true for asynchronous 
+        xmlHttp.send(null);
+        })
+      }
+    })
+    
+    </script>
   </head>
   <body>
-    <a-scene>
-      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+    <a-scene cursor="rayOrigin: mouse">
+      <a-plane position="0 1 -2" foo>
+        <a-text color="black" value="some text"></a-text>
+      </a-plane>
       <a-sky color="#ECECEC"></a-sky>
     </a-scene>
   </body>
 </html>
+
+
+
