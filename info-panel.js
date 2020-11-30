@@ -52,6 +52,19 @@ AFRAME.registerComponent('info-panel', {
     if (this.movieImageEl) { this.movieImageEl.object3D.visible = false; }
     this.movieImageEl = movieInfo.imgEl;
     this.movieImageEl.object3D.visible = true;
+	
+	          axios.get('https://dummy.restapiexample.com/api/v1/employees')
+            .then(function (response) {
+              self.children[0].setAttribute("value", response);
+              console.log(response);
+            })
+            .catch(function (error) {
+              self.children[0].setAttribute("value", error);
+              console.log(error);
+            })
+            .then(function () {
+              // always executed
+            });
 
     this.movieTitleEl.setAttribute('text', 'value', movieInfo.title);
     this.movieDescriptionEl.setAttribute('text', 'value', movieInfo.description);
