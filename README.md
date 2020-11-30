@@ -1,92 +1,84 @@
-# A-Frame Boilerplate
+# CS 4331 VR COVID Project
 
-Boilerplate for creating WebVR scenes with [A-Frame](https://aframe.io).
+This is my Aframe based VR project for the Texas Tech VR elective class in the CS department. This project was made to introduce many to the VR world and web based VR sites and Google Cardboard projects can be made with [Aframe](https://aframe.io/) and/or [THREE.js](https://threejs.org/). The project instructions were to create our view point and opinion about the COVID pandemic and how it effected us. In my project I chose my apartment room as my location as that's where I spend most of my time, both before and during the COVID pandemic.
 
-Alternatively, check out the [A-Frame Starter on
-glitch.com](https://glitch.com/~aframe) for a more interactive way on getting
-started.
+You can view my project at this [link](https://sgo-nova.github.io/COVID-Aframe/) or watch my demo at this [link](https://sgo-nova.github.io/COVID-Aframe/Minute.html).
 
-## Getting Started
+You can also watch my 2 minute presentation at this [link](https://sgo-nova.github.io/COVID-Aframe/Presentation.html).
 
-There are two easy options for obtaining this A-Frame scene. It's then up to you to make it your own!
+![COVID .gif](https://media.giphy.com/media/CTjL3dUOQKXsIeMN2S/giphy.gif)
 
-### <sup>Option 1:</sup> Download the ZIP kit 📦
+## About my Project
 
-[<img src="http://i.imgur.com/UVPZoM0.png" width="200">](https://github.com/aframevr/aframe-boilerplate/archive/master.zip)
+This project was made with COVID in mind in my room. Things updated were items like my work schedule which was updated to work full time, content on my computer, wall decorations, cleanliness of my room, and additional TV on the wall. Every item in this project, except the TV was modeled by myself either in blender or with a-boxes and other shapes. This project took a lot longer than i expect due to learning a new language almost, and also because of my work schedule. It was a fun time creating a new world and learning at the same time.
 
-After you have __[downloaded and extracted this `.zip` file](https://github.com/aframevr/aframe-boilerplate/archive/master.zip)__ containing the contents of this repo, open the resulting directory, and you'll be have your scene ready in these few steps:
+#### Bugs
 
-    npm install && npm start
-    open http://localhost:3000/
+Some bugs are still in this project as there was no way to figure out how to fix them. This includes using cardboard and phones to view this. One day it work and the next it didn't with no code change. I have tried changing camera setting and using default settings, but nothing worked. The .mp4 on the monitor sometimes does not load and makes the user re-enter the site instead of refreshing as it would not fix itself.
 
-<hr>
+## Models
 
-### <small><sup>Option 2:</sup> Fork this Git repo 🍴🐙
+### _Alarm Clock_
 
-Alternatively, you can __[fork this repo](https://github.com/aframevr/aframe-boilerplate/fork)__ to get started, if you'd like to maintain a Git workflow.
+![Alarm Clock](Pictures/AlarmClock.PNG)
 
-After you have __[forked this repo](https://github.com/aframevr/aframe-boilerplate/fork)__, clone a copy of your fork locally and you'll be have your scene ready in these few steps:
+### _Bed_
 
-    git clone https://github.com/aframevr/aframe-boilerplate.git
-    cd aframe-boilerplate && rm -rf .git && npm install && npm start
-    open http://localhost:3000/
+![Bed](Pictures/Bed.PNG)
 
-> :iphone: **Mobile pro tip:** Upon starting the development server, the URL will be logged to the console. Load that URL from a browser on your mobile device. (If your mobile phone and computer are not on the same LAN, consider using [ngrok](https://ngrok.com/) for local development and testing. [Browsersync](https://www.browsersync.io/) is also worth a gander.)
+### _Chair_
 
-<hr>
+![Chair](Pictures/Chair.PNG)
 
-### <small><sup>Option 3:</sup> Fork this CodePen example 🍴💾✒️
+### _Computer_
 
-Or, you can simply __[fork this CodePen example](http://codepen.io/team/mozvr/pen/BjygdO?editors=100)__ to dive right in. Enjoy!
+![Computer](Pictures/Computer.PNG)
 
+### _Desk_
 
-## Publishing your scene
+![Desk](Pictures/Desk.PNG)
 
-If you don't already know, GitHub offers free and awesome publishing of static sites through __[GitHub Pages](https://pages.github.com/)__.
+### _Fan & Light_
 
-To publish your scene to your personal GitHub Pages:
+![Fan & Light](Pictures/Fan.PNG)
 
-    npm run deploy
+### _Light Switch_
 
-And, it'll now be live at __http://`your_username`.github.io/__ :)
+![Light Switch](Pictures/Light_On.PNG)
 
-<hr>
+### _Monitor_
 
-To know which GitHub repo to deploy to, the `deploy` script first looks at the optional [`repository` key](https://docs.npmjs.com/files/package.json#repository) in the [`package.json` file](package.json) (see [npm docs](https://docs.npmjs.com/files/package.json#repository) for sample usage). If the `repository` key is missing, the script falls back to using the local git repo's remote origin URL (you can run the local command `git remote -v` to see all your remotes; also, you may refer to the [GitHub docs](https://help.github.com/articles/about-remote-repositories/) for more information).
+![Monitor](Pictures/Monitor.PNG)
 
-<hr>
+### _Night Stand_
 
-## Still need Help?
+![Night Stand](Pictures/NightStand.PNG)
 
-### Installation
+### _Shirt_
 
-First make sure you have Node installed.
+![Shirt](Pictures/Shirt.PNG)
 
-On Mac OS X, it's recommended to use [Homebrew](http://brew.sh/) to install Node + [npm](https://www.npmjs.com):
+### _Teleport Nodes_
 
-    brew install node
+![Teleport Nodes](Pictures/TeleportNode.PNG)
 
-To install the Node dependencies:
+### _TV_
 
-    npm install
+![TV](Pictures/TV.PNG)
 
+### _Wall Art_
 
-### Local Development
+![Wall Art](Pictures/WallArt.PNG)
 
-To serve the site from a simple Node development server:
+### Sources:
 
-    npm start
-
-Then launch the site from your favourite browser:
-
-[__http://localhost:3000/__](http://localhost:3000/)
-
-If you wish to serve the site from a different port:
-
-    PORT=8000 npm start
-
-
-## License
-
-This program is free software and is distributed under an [MIT License](LICENSE).
-"# DizertatieVR" 
+Wall Art [link](https://images-na.ssl-images-amazon.com/images/I/61zzaOIDLsL._AC_SX522_.jpg)\
+TV model [link](https://free3d.com/3d-model/mi-smart-tv-32-inch-239229.html)\
+Shirt Tutorial [link](https://www.youtube.com/watch?v=GcM9nZrG6NY&t)\
+Wood picture [link](https://images.assetsdelivery.com/compings_v2/weerapat/weerapat1507/weerapat150700034.jpg)\
+Door picture [link](https://secure.img1-fg.wfcdn.com/im/31460569/resize-h800%5Ecompr-r85/3602/36024960/Paneled+Manufactured+Wood+Unfinished+6-Panel+Standard+Door.jpg)\
+Pillow picture [link](https://miauss.com/wp-content/uploads/2019/03/PC050007_1.jpg)\
+Metal texture [link](https://i.pinimg.com/originals/d4/02/d6/d402d650fd5aa58be87b6de5c87714b8.jpg)\
+Dark wood [link](https://1.bp.blogspot.com/-PIdDfu35WX8/WFfXlALv0GI/AAAAAAAARbo/oFlC2XodBOU9eDgROg5lOR2lUpR764XIgCLcB/w1200-h630-p-k-no-nu/seamless_black_fine_wood_texture_texturise.jpg)\
+Starry night [link](https://images-na.ssl-images-amazon.com/images/I/91iS91eizUL._AC_SX679_.jpg)\
+Plastic picture [link](https://us.123rf.com/450wm/ensup/ensup1205/ensup120500113/13819569-black-plastic-texture.jpg?ver=6)

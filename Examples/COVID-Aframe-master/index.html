@@ -1,0 +1,947 @@
+<html>
+  <head>
+    <script src="libs/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v1.14.0/dist/aframe-extras.min.js"></script>
+
+    <script>
+      AFRAME.registerComponent("turnon-off", {
+        init: function () {
+          var data = this.data;
+          var el = this.el;
+          var li = document.querySelector("#RoomLight");
+          var sw = document.querySelector("#switch");
+
+          el.addEventListener("click", function () {
+            if (li.getAttribute("light").intensity == 0.3) {
+              li.setAttribute("light", { intensity: 0.01 });
+              sw.setAttribute("rotation", "0 0 25");
+            } else {
+              li.setAttribute("light", { intensity: 0.3 });
+              sw.setAttribute("rotation", "0 0 -25");
+            }
+          });
+        },
+      });
+    </script>
+    <script>
+      AFRAME.registerComponent("move", {
+        init: function () {
+          var data = this.data;
+          var el = this.el;
+          var hu = document.querySelector("#human");
+          var te1 = document.querySelector("#teleport1");
+          var te2 = document.querySelector("#teleport2");
+          var te3 = document.querySelector("#teleport3");
+
+          el.addEventListener("click", function () {
+            hu.setAttribute("position", {
+              x: el.getAttribute("position").x,
+              y: hu.getAttribute("position").y,
+              z: el.getAttribute("position").z,
+            });
+            te1.setAttribute("position", "0 10 0");
+            te2.setAttribute("position", "0 10 0");
+            te3.setAttribute("position", "0 10 0");
+          });
+        },
+      });
+    </script>
+    <script>
+      AFRAME.registerComponent("covid", {
+        init: function () {
+          var data = this.data;
+          var el = this.el;
+          var mu = document.querySelector("#mungus");
+          var an = document.querySelector("#animu");
+          var sc = document.querySelector("#screen");
+          var wo = document.querySelector("#work");
+          var wb = document.querySelector("#work_b");
+          var wa = document.querySelector("#work_a");
+          var pa = document.querySelector("#paint");
+          var w1 = document.querySelector("#w1");
+          var w2 = document.querySelector("#w2");
+          var w3 = document.querySelector("#w3");
+          var w4 = document.querySelector("#w4");
+          var w5 = document.querySelector("#w5");
+          var s1 = document.querySelector("#shirt01");
+          var s2 = document.querySelector("#shirt02");
+          var s3 = document.querySelector("#shirt03");
+          var tv = document.querySelector("#tv_m");
+          var mo = document.querySelector("#mode");
+
+          el.addEventListener("click", function () {
+            console.log(sc.getAttribute("material").src);
+            if (sc.getAttribute("material").src == mu) {
+              sc.setAttribute("material", { src: an });
+              wo.setAttribute("material", { src: wb });
+              pa.setAttribute("position", "-3.929 1.660 3.590");
+              el.setAttribute("color", "#227538");
+              w1.setAttribute("position", "-2.5 2 7.95");
+              w2.setAttribute("position", "-2.1 2 7.95");
+              w3.setAttribute("position", "-1.6 2 7.95");
+              w4.setAttribute("position", "-1.1 2 7.95");
+              w5.setAttribute("position", "-0.7 2 7.95");
+              s1.setAttribute("position", "-2 .53 3");
+              s2.setAttribute("position", "-3.1 .53 5");
+              s3.setAttribute("position", "-.5 .53 4.5");
+              tv.setAttribute("position", "-1.75 1.5 2.25");
+              mo.setAttribute("value", "COVID mode \n\nOFF");
+            } else {
+              sc.setAttribute("material", { src: mu });
+              wo.setAttribute("material", { src: wa });
+              pa.setAttribute("position", "-3.929 1.660 -3.590");
+              el.setAttribute("color", "#990f0f");
+              w1.setAttribute("position", "-2.5 2 -7.95");
+              w2.setAttribute("position", "-2.1 2 -7.95");
+              w3.setAttribute("position", "-1.6 2 -7.95");
+              w4.setAttribute("position", "-1.1 2 -7.95");
+              w5.setAttribute("position", "-0.7 2 -7.95");
+              s1.setAttribute("position", "-2 .53 -3");
+              s2.setAttribute("position", "-3.1 .53 -5");
+              s3.setAttribute("position", "-.5 .53 -4.5");
+              tv.setAttribute("position", "-1.75 1.5 -2.25");
+              mo.setAttribute("value", "COVID mode \n\nON");
+            }
+          });
+        },
+      });
+    </script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <video id="mungus" autoplay loop="true" src="assets/mungus.mp4"></video>
+        <video
+          id="animu"
+          autoplay
+          loop="true"
+          src="assets/FavAnimu.mp4"
+        ></video>
+        <img id="work_b" src="assets/Work_before.jpg" />
+        <img id="work_a" src="assets/Work_after.jpg" />
+        <img id="star" src="assets/star.jpg" />
+      </a-assets>
+      <a-sky color="#87CEEB"></a-sky>
+      <a-entity
+        id="human"
+        camera="userHeight: 1.75"
+        universal-controls
+        position="0 0 -3.5"
+      >
+        <a-entity
+          cursor="fuse: true"
+          fusetime="500"
+          position="0 0 -.25"
+          geometry="primitive: ring; radiusOuter: 0.005;
+          radiusInner: 0.0025"
+          material="color: black; shader: flat"
+        ></a-entity>
+      </a-entity>
+
+      <!--Self made objects-->
+      <assets>
+        <a-asset-item id="desk" src="assets/Desk.obj"></a-asset-item>
+        <a-asset-item id="desk_matterial" src="assets/Desk.mtl"></a-asset-item>
+        <a-asset-item id="shirt" src="assets/shirt1.gltf"></a-asset-item>
+        <a-asset-item id="Tv" src="assets/Tv.gltf"></a-asset-item>
+      </assets>
+
+      <a-entity
+        obj-model="obj: #desk; mtl: #desk_matterial"
+        scale=".5 .5 .5"
+        position="-4.753 0.368 -7.214"
+        shadow="recieve: true"
+      ></a-entity>
+      <a-entity
+        id="shirt01"
+        gltf-model="#shirt"
+        shadow="recieve: true"
+        scale=".15 .15 .025"
+        rotation="-90 57 0"
+        position="-2 .53 3"
+        color="#FFF"
+      ></a-entity>
+      <a-entity
+        id="shirt02"
+        gltf-model="#shirt"
+        shadow="recieve: true"
+        scale=".15 .15 .025"
+        rotation="-90 167 0"
+        position="-3.1 .53 5"
+        color="#FFF"
+      ></a-entity>
+      <a-entity
+        id="shirt03"
+        gltf-model="#shirt"
+        shadow="recieve: true"
+        scale=".15 .15 .025"
+        rotation="-90 266 0"
+        position="-.5 .53 4.5"
+        color="#FFF"
+      ></a-entity>
+      <a-entity
+        id="tv_m"
+        gltf-model="#Tv"
+        shadow="recieve: true"
+        position="-1.75 1.5 2.25"
+        scale=".5 .5 .5"
+        color="#FFF"
+        rotation="0 180 0"
+        covid
+      ></a-entity>
+
+      <!--Box interaction-->
+      <a-box
+        color="#cecece"
+        width=".1"
+        height=".1"
+        depth=".1"
+        position=".99 1.5 -1 "
+        class="intersectable"
+        turnon-off
+      >
+        <a-box
+          id="switch"
+          color="#FFF"
+          width=".2"
+          height=".02"
+          depth=".01"
+          rotation="0 0 -25"
+        >
+        </a-box>
+      </a-box>
+      <a-box
+        id="covidbutt"
+        color="#227538"
+        width=".1"
+        height=".1"
+        depth=".1"
+        position=".99 1.5 -1.5 "
+        class="intersectable"
+        covid
+      ></a-box>
+
+      <!--FLOOR-->
+      <a-box
+        color="#4e433f"
+        shadow="recieve: true"
+        material="shader: flat"
+        width="20"
+        height="1"
+        depth="20"
+        position="-9 0 -9"
+      ></a-box>
+      <a-box
+        color="#2cac00"
+        shadow="recieve: true"
+        material="shader: flat"
+        width="20"
+        height="1"
+        depth="40"
+        position="11 0 -9"
+      >
+      </a-box>
+
+      <!--Lights-->
+      <a-entity
+        id="lightSphere"
+        geometry="primitive: sphere; radius: .1"
+        light="type: point; color: #FFF; castShadow: true; intensity: .1"
+        position="5 5 0"
+        material="color:#212121"
+      >
+      </a-entity>
+      <a-light type="ambient" intensity="0.5"></a-light>
+      <a-entity
+        id="RoomLight"
+        geometry="primitive: sphere; radius: .16"
+        light="type: point; color: #FFF; castShadow: true; intensity: .3"
+        position="-2.06 2.45 -4.119"
+        material="color:#FFFFFF"
+        class="intersectable"
+      >
+      </a-entity>
+
+      <!--CEILING-->
+      <a-box
+        color="#DEDEDE"
+        shadow="recieve: true"
+        width="20"
+        height="1"
+        depth="20"
+        position="-4.03281 3 -3.03761"
+        material=""
+        geometry=""
+        scale="0.5 0.5 0.5"
+        visible=""
+      >
+      </a-box>
+
+      <!--Walls-->
+      <a-box
+        color="#F0EAD6"
+        shadow="cast: true"
+        width=".1"
+        height="4"
+        depth="3.08"
+        position="-1 2 -0.51"
+      >
+      </a-box>
+      <a-box
+        color="#F0EAD6"
+        shadow="cast: true"
+        width=".1"
+        height="4"
+        depth="7.08"
+        position="1 2 -2.51"
+      >
+      </a-box>
+      <a-box
+        color="#F0EAD6"
+        shadow="recieve: true"
+        width=".1"
+        height=".75"
+        depth="2"
+        position="1 .75 -7.01"
+      ></a-box>
+      <!--Glass-->
+      <a-box
+        color="#ADD8E6"
+        material="opacity: .2"
+        shadow="recieve: true"
+        width=".05"
+        height="2"
+        depth="2"
+        position="1 1.75 -7.01"
+      ></a-box>
+      <a-box
+        color="#F0EAD6"
+        shadow="recieve: true"
+        width=".1"
+        height=".75"
+        depth="2"
+        position="1 2.75 -7.01"
+      ></a-box>
+      <a-box
+        color="#F0EAD6"
+        shadow="recieve: true"
+        width=".1"
+        height="4"
+        depth="1"
+        position="1 2 -8"
+      >
+      </a-box>
+      <a-box
+        color="#F0EAD6"
+        shadow="recieve: true"
+        width=".1"
+        height="4"
+        depth="7.08"
+        position="-4 2 -2.51"
+      ></a-box>
+      <a-box
+        color="#F0EAD6"
+        shadow="recieve: true"
+        width=".1"
+        height="4"
+        depth="2"
+        position="-5 2 -7.01"
+      ></a-box>
+      <a-box
+        color="#F0EAD6"
+        shadow="recieve: true"
+        width="5"
+        height="4"
+        depth=".1"
+        position="-1.5 2 1"
+      >
+      </a-box>
+      <a-box
+        color="#F0EAD6"
+        shadow="recieve: true"
+        width="1.5"
+        height="4"
+        depth=".1"
+        position="-1.75 2 -2"
+      >
+      </a-box>
+      <a-box
+        color="#F0EAD6"
+        shadow="recieve: true"
+        width="1.5"
+        height="2"
+        depth=".1"
+        position="-2.75 3 -2"
+      >
+      </a-box>
+      <a-box
+        color="#F0EAD6"
+        shadow="recieve: true"
+        width="1.5"
+        height="4"
+        depth=".1"
+        position="-4.25 2 -2"
+      >
+      </a-box>
+      <a-box
+        color="#F0EAD6"
+        shadow="recieve: true"
+        width="1"
+        height="4"
+        depth=".1"
+        position="-4.5 2 -6"
+      >
+      </a-box>
+      <a-box
+        color="#F0EAD6"
+        shadow="recieve: true"
+        width="6"
+        height="3"
+        depth=".1"
+        position="-2.0 2 -8"
+      >
+      </a-box>
+
+      <!--Doors-->
+      <a-box
+        color="#FFF"
+        width=".1"
+        height="2"
+        depth="1"
+        position=".99 1.5 0"
+        material="src: assets/door.jpg"
+      ></a-box>
+      <a-box
+        color="#FFF"
+        width=".1"
+        height="2"
+        depth="1"
+        position="-3 1.5 -2.01"
+        rotation="0 90 0"
+        material="src: assets/door.jpg"
+      >
+      </a-box>
+
+      <!--Chair-->
+      <a-box
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position="-3.99 0.418 -7.236"
+        rotation="90 0 0"
+        shadow="recieve: true"
+      >
+      </a-box>
+      <a-box
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position="-3.993 0.418 -6.8"
+        rotation="90 0 0"
+        shadow="recieve: true"
+      >
+      </a-box>
+      <a-box
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position="-3.791 0.869 -7.011"
+        scale="5.01 1 .556"
+        shadow="recieve: true"
+        material="src: assets/wood.jpg"
+      >
+      </a-box>
+      <a-box
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position="-3.595 0.408 -7.235"
+        rotation="90 0 0"
+        shadow="recieve: true"
+      >
+      </a-box>
+      <a-box
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position="-3.593 0.408 -6.786"
+        rotation="90 0 0"
+        shadow="recieve: true"
+      >
+      </a-box>
+      <a-box
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position="-3.571 1.148 -6.875"
+        rotation="-90 0 0"
+        scale=".49 1 .54"
+        shadow="recieve: true"
+      >
+      </a-box>
+      <a-box
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position="-3.571 1.148 -7.170"
+        rotation="-90 0 0"
+        scale=".49 1 .54"
+        shadow="recieve: true"
+      >
+      </a-box>
+      <a-box
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position="-3.583 1.279 -7.011"
+        scale="0.750 3.530 0.480"
+        shadow="recieve: true"
+        material="src: assets/wood.jpg"
+      >
+      </a-box>
+
+      <!--PC-->
+      <a-box
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position="-4.467 1.506 -7.762"
+        scale="7.100 5.830 0.250"
+        shadow="recieve: true"
+        material="src: assets/metal.jpg"
+      >
+      </a-box>
+
+      <!--Monitor-->
+      <a-box
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position="-4.472 1.405 -7.011"
+        scale="0.422 3.530 0.112"
+        rotation="0 0 -19.906"
+        material="src: assets/plastic.jpg"
+      >
+      </a-box>
+      <a-box
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position="-4.507 1.210 -7.028"
+        scale="2.390 0.538 0.480"
+        material="src: assets/plastic.jpg"
+      >
+      </a-box>
+      <a-box
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position="-4.402 1.660 -6.990"
+        scale="0.333 5.039 1.012"
+      >
+      </a-box>
+      <!--screen-->
+      <a-plane
+        id="screen"
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position="-4.379 1.660 -6.990"
+        scale="11 5.039 1.012"
+        material="src: #animu"
+        rotation="0 90 0"
+        sound="src: url(assets/Never Gonna Give You Up.mp3); on: click; volume: .5"
+        class="intersectable"
+      >
+      </a-plane>
+
+      <!--Bed-->
+      <a-box
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position="-0.809 0.418 -7.875"
+        rotation="90 0 0"
+        shadow="recieve: true"
+        material="src: assets/table.jpg"
+      ></a-box>
+      <a-box
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position="-2.468 0.418 -7.875"
+        rotation="90 0 0"
+        shadow="recieve: true"
+        material="src: assets/table.jpg"
+      ></a-box>
+      <a-box
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position="-0.809 0.418 -5.723"
+        rotation="90 0 0"
+        shadow="recieve: true"
+        material="src: assets/table.jpg"
+      ></a-box>
+      <a-box
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position="-2.468 0.418 -5.723"
+        rotation="90 0 0"
+        shadow="recieve: true"
+        material="src: assets/table.jpg"
+      ></a-box>
+      <a-box
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position="-1.662 0.888 -6.779"
+        rotation="90 0 0"
+        scale="20.448 23.405 0.2"
+        shadow="recieve: true"
+        material="src: assets/blue.jpg"
+      ></a-box>
+
+      <!--pillows-->
+      <a-box
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position="-2.089 1.029 -7.494"
+        rotation="90 0 0"
+        scale="7.721 4.920 0.070"
+        shadow="recieve: true"
+        material="src: assets/pillow.jpg"
+      ></a-box>
+      <a-box
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position="-1.239 1.029 -7.494"
+        rotation="90 0 0"
+        scale="7.721 4.920 0.070"
+        shadow="recieve: true"
+        material="src: assets/pillow.jpg"
+      ></a-box>
+
+      <!--FAN-->
+      <a-cylinder
+        color="black"
+        height="1"
+        radius=".1"
+        position="-2.06 3 -4.119"
+      >
+        <a-animation
+          attribute="rotation"
+          to="0 360 0"
+          dur="3000"
+          repeat="indefinite"
+          easing="linear"
+        >
+        </a-animation>
+        <a-box
+          width="1"
+          height=".005"
+          depth=".2"
+          position="-.5 -.4 0"
+          rotation="10 0 0"
+        >
+        </a-box>
+        <a-box
+          width="1"
+          height=".005"
+          depth=".2"
+          position=".5 -.4 0"
+          rotation="-10 0 0"
+        >
+        </a-box>
+        <a-box
+          width=".2"
+          height=".005"
+          depth="1"
+          position="0 -.4 .5"
+          rotation="0 0 -10"
+        >
+        </a-box>
+        <a-box
+          width=".2"
+          height=".005"
+          depth="1"
+          position="0 -.4 -.5"
+          rotation="0 0 10"
+        >
+        </a-box>
+      </a-cylinder>
+
+      <!--nightstand-->
+      <a-box
+        color="#FFF"
+        width=".75"
+        height=".1"
+        depth="1"
+        position=".125 0.918 -7.625"
+        rotation="0 90 0"
+        shadow="recieve: true"
+        material="src: assets/wood.jpg"
+      ></a-box>
+      <a-box
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position="-.25 0.418 -7.875"
+        rotation="90 0 0"
+        shadow="recieve: true"
+        material="src: assets/table.jpg"
+      ></a-box>
+      <a-box
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position=".5 0.418 -7.875"
+        rotation="90 0 0"
+        shadow="recieve: true"
+        material="src: assets/table.jpg"
+      ></a-box>
+      <a-box
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position="-.25 0.418 -7.375"
+        rotation="90 0 0"
+        shadow="recieve: true"
+        material="src: assets/table.jpg"
+      ></a-box>
+      <a-box
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position=".5 0.418 -7.375"
+        rotation="90 0 0"
+        shadow="recieve: true"
+        material="src: assets/table.jpg"
+      ></a-box>
+
+      <a-box
+        color="#000"
+        width=".125"
+        height=".2"
+        depth=".3"
+        position=".125 1.018 -7.625"
+        rotation="0 60 0"
+        shadow="recieve: true"
+      ></a-box>
+      <a-cylinder
+        radius=".075"
+        height=".1"
+        rotation="0 60 90"
+        position=".125 1.0425 -7.605"
+        shadow="recieve: true"
+      >
+        <a-box
+          color="#000"
+          width=".01"
+          height=".11"
+          depth=".075"
+          position="-.01 0 .03"
+          shadow="recieve: true"
+        >
+        </a-box>
+        <a-box
+          color="#0f0f0f"
+          width=".01"
+          height=".1"
+          depth=".075"
+          position=".025 .001 0"
+          shadow="recieve: true"
+          rotation="0 90 0"
+        >
+        </a-box>
+      </a-cylinder>
+
+      <!--Work sched-->
+      <a-plane
+        id="work"
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position="-3.929 1.660 -4.990"
+        scale="6 9 1.012"
+        material="src: #work_b"
+        rotation="0 90 0"
+      >
+      </a-plane>
+      <!--Paintings/wall decor-->
+      <a-plane
+        id="paint"
+        color="#FFF"
+        width=".1"
+        height=".1"
+        depth="1"
+        position="-3.929 1.660 3.590"
+        scale="18 10 1.012"
+        material="src: #star"
+        rotation="0 90 0"
+      ></a-plane>
+      <a-box
+        id="w3"
+        color="#FFF"
+        width=".5"
+        height="1"
+        depth=".075"
+        position="-1.6 2 7.95"
+        shadow="recieve: true"
+        material="src: assets/W3.PNG"
+      >
+      </a-box>
+      <a-box
+        id="w2"
+        color="#FFF"
+        width=".4"
+        height=".75"
+        depth=".075"
+        position="-2.1 2 7.95"
+        shadow="recieve: true"
+        material="src: assets/W2.PNG"
+      >
+      </a-box>
+      <a-box
+        id="w1"
+        color="#FFF"
+        width=".3"
+        height=".6"
+        depth=".075"
+        position="-2.5 2 7.95"
+        shadow="recieve: true"
+        material="src: assets/W1.PNG"
+      >
+      </a-box>
+      <a-box
+        id="w4"
+        color="#FFF"
+        width=".4"
+        height=".75"
+        depth=".075"
+        position="-1.1 2 7.95"
+        shadow="recieve: true"
+        material="src: assets/W4.PNG"
+      >
+      </a-box>
+      <a-box
+        id="w5"
+        color="#FFF"
+        width=".3"
+        height=".6"
+        depth=".075"
+        position="-0.7 2 7.95"
+        shadow="recieve: true"
+        material="src: assets/W5.PNG"
+      >
+      </a-box>
+
+      <!--Teleport positions-->
+      <a-cylinder
+        position="0 0 -3.5"
+        radius=".2"
+        height="1.1"
+        material="opacity: .2"
+        move
+      ></a-cylinder>
+      <a-cylinder
+        position="0 0 -1"
+        radius=".2"
+        height="1.1"
+        material="opacity: .2"
+        move
+      ></a-cylinder>
+      <a-cylinder
+        position="0 0 -6"
+        radius=".2"
+        height="1.1"
+        material="opacity: .2"
+        move
+      ></a-cylinder>
+      <a-cylinder
+        position="-3.25 0 -3.5"
+        radius=".2"
+        height="1.1"
+        material="opacity: .2"
+        move
+      ></a-cylinder>
+      <a-cylinder
+        position="-3.25 0 -7.5"
+        radius=".2"
+        height="1.1"
+        material="opacity: .2"
+        move
+      ></a-cylinder>
+
+      <!--Text stuff-->
+      <a-plane
+        id="teleport1"
+        position="-.5 1.2 -6"
+        rotation="0 0 0"
+        material="opacity: 0"
+        ><a-text width="2" value="Try looking at the cylinder!"></a-text
+      ></a-plane>
+      <a-plane
+        id="teleport2"
+        position=".5 1.2 -1"
+        rotation="0 180 0"
+        material="opacity: 0"
+      >
+        <a-text width="2" value="Try looking at the cylinder!"></a-text>
+      </a-plane>
+      <a-plane
+        id="teleport3"
+        position="-3.25 1.2 -3"
+        rotation="0 90 0"
+        material="opacity: 0"
+      >
+        <a-text width="2" value="Try looking at the cylinder!"></a-text>
+      </a-plane>
+      <a-plane
+        position=".95 1.75 -1.25"
+        rotation="0 -90 0"
+        material="opacity: 0"
+      >
+        <a-text width="1" value="Try turning the lights off!"></a-text>
+      </a-plane>
+      <a-plane
+        position=".95 1.7 -1.63"
+        rotation="0 -90 0"
+        material="opacity: 0"
+      >
+        <a-text id="mode" width="1" value="COVID mode \n\nOFF"> </a-text>
+      </a-plane>
+      <a-plane position="-4.5 2 -6.8" rotation="0 90 0" material="opacity: 0">
+        <a-text width="2" value="Click me!"></a-text>
+      </a-plane>
+    </a-scene>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxy Event</title>
+    <!-- Agar animasi yang awalnya disematkan di pengontrol, bisa dipindah ke yang dikontrol -->
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-proxy-event-component/dist/aframe-proxy-event-component.min.js"></script>
+    <!-- Agar komponen yang kita punya menghadap ke komponen yang lain secara kontinyu -->
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+</head>
+<body>
+    <a-scene>
+        <a-camera id="cam">
+            <a-cursor></a-cursor>
+        </a-camera>
+        <a-entity
+            geometry="primitive:triangle"
+            text__btn_up="align:center;baseline:top;value:UP;wrapCount:5;"
+            position="-2 2.5 -3"
+            material="color:green"
+            look-at="#cam"
+            proxy-event__satu="
+                event:click;
+                as:atas;
+                to:#box;
+            "
+        ></a-entity>
+        <a-entity
+            text__btn_down="align:center;baseline:bottom;value:DOWN;wrapCount:10;"
+            position="-2 1 -3"
+        >
+        <!-- Agar yang berputar hanya segitiganya, teks tidak perlu -->
+            <a-entity
+                geometry="primitive:triangle"
+                material="color:green"
+                rotation="0 0 180"
+                proxy-event__satu="
+                    event:click;
+                    as:bawah;
+                    to:#box;
+                "
+            ></a-entity>
+        </a-entity>
+        <a-box id="box" color="#aaaa00" position="1 1.5 -3"
+            animation__atas="property:position;to:1 2.5 -3;startEvents:atas"
+            animation__bawah="property:position;to:1 0.5 -3;startEvents:bawah"
+            animation__reset="property:position;to:1 1.5 -3;startEvents:click"
+        ></a-box>
+    </a-scene>
+</body>
+</html>

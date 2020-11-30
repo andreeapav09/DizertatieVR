@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joystick Virtual</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <style>
+        .button{
+            width: 100px; height: 100px;
+            position: absolute; z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <img id="up" src="images/up.png" class="button" style=" bottom: 120px; left: 120px;">
+    <img id="down" src="images/down.png" class="button" style=" bottom: 20px; left: 120px;">
+    <img id="left" src="images/left.png" class="button" style=" bottom: 20px; left: 20px;">
+    <img id="right" src="images/right.png" class="button" style=" bottom: 20px; left: 220px;">
+    <script>
+        let direction = new THREE.Vector3();
+        let movement = new THREE.Vector3();
+        function touchEndListener() {
+            movement = new THREE.Vector3();
+        }
+        function clickListener(ev) {
+            let sceneEl = document.querySelector("#scene1");
+            let camDirection = sceneEl.camera.getWorldDirection(direction);
+            camDirection.multiplyScalar(0.4);
+            if (ev.srcElement.id == "up") {
+                console.log("%cUP", "font-size:2em;");
+                movement.x += camDirection.x;
+                movement.z += camDirection.z;
+            } else if (ev.srcElement.id == "down"){
+                console.log("%cDOWN", "font-size:2em;");
+                movement.x -= camDirection.x;
+                movement.z -= camDirection.z;
+            }
+            let sideDirection = camDirection.cross(new THREE.Vector3(0, 1, 0));
+            if (ev.srcElement.id == "left") {
+                console.log("%cLEFT", "font-size:2em;");
+                movement.x -= sideDirection.x;
+                movement.z -= sideDirection.z;
+            } else if (ev.srcElement.id == "right"){
+                console.log("%cRIGHT", "font-size:2em;");
+                movement.x += sideDirection.x;
+                movement.z += sideDirection.z;
+            }
+        }
+        AFRAME.registerComponent("user-control", {
+            tick:function() {
+                if (movement.length() == 0) {
+                    return;
+                }
+                let cam = document.querySelector("#cam");
+                let position = cam.getAttribute("position");
+                position.x += movement.x;
+                position.z += movement.z;
+                cam.setAttribute("position", position);
+            },
+            init:function() {
+                let up = document.querySelector("#up");
+                let down = document.querySelector("#down");
+                let left = document.querySelector("#left");
+                let right = document.querySelector("#right");
+                up.addEventListener("touchstart", clickListener);
+                down.addEventListener("touchstart", clickListener);
+                left.addEventListener("touchstart", clickListener);
+                right.addEventListener("touchstart", clickListener);
+                up.addEventListener("touchend", touchEndListener);
+                down.addEventListener("touchend", touchEndListener);
+                left.addEventListener("touchend", touchEndListener);
+                right.addEventListener("touchend", touchEndListener);
+            }
+        });
+    </script>
+    <a-scene id="scene1" user-control>
+        <a-entity
+            id="cam"
+            camera look-controls wasd-controls
+            position="0 1.5 3"
+        ></a-entity>
+        <!-- hal di atas sama dengan tag a-camera -->
+        <a-gltf-model src="models/Pokescene.gltf"></a-gltf-model>
+    </a-scene>
+</body>
+</html>

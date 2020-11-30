@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Component</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+</head>
+<body>
+    <a-scene>
+        <!-- 3D text, default color: white -->
+        <!-- <a-text
+            value="Lorem ipsum"
+            color="#00ffff"
+            position="0 1.5 -2"
+        ></a-text> -->
+        <!-- If we use a-entity, the size looks smaller due to wrapCount -->
+        <a-entity
+            text="
+            value:If we use a-entity,\nthe size looks smaller due to wrapCount;
+            color:#0000ff;
+            wrapCount:11;
+            font:./fonts/Raleway-Semibold-msdf.json;
+            align:center;
+            negate:false"
+            position="0 1.5 -2"
+            geometry="primitive:plane;width:auto;height:auto"
+            material="color:#cccccc"
+        ></a-entity>
+    </a-scene>
+</body>
+</html>
