@@ -16,7 +16,7 @@
             if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
                 self.children[0].setAttribute("value", this.responseText);
         }
-        xmlHttp.open("GET", 'http://dummy.restapiexample.com/api/v1/employees', true); // true for asynchronous 
+        xmlHttp.open("GET", 'https://dummy.restapiexample.com/api/v1/employees', true); // true for asynchronous 
         xmlHttp.send(null);
         })
       }
