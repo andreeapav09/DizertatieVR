@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello, World! - A-Frame</title>
+    <meta name="description" content="Hello, World! - A-Frame">
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+ 
+      AFRAME.registerComponent("foo", {
+      init: function() {
+        let self = this.el
+        this.el.addEventListener("click", (e)=>{
+          // Make a request for a user with a given ID
+          axios.get('https://dummy.restapiexample.com/api/v1/employees')
+            .then(function (response) {
+              self.children[0].setAttribute("value", response.data.data[0].employee_name);
+              console.log(response);
+            })
+            .catch(function (error) {
+              self.children[0].setAttribute("value", error);
+              console.log(error);
+            })
+            .then(function () {
+              // always executed
+            });
+        })
+      }
+    })
+    
+    </script>
+  </head>
+  <body>
+    <a-scene cursor="rayOrigin: mouse">
+      <a-plane position="0 1 -2" foo>
+        <a-text color="black" value="some text"></a-text>
+      </a-plane>
+      <a-sky color="#ECECEC"></a-sky>
+    </a-scene>
+  </body>
+</html>
+
+
+
