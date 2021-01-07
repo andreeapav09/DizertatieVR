@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Demo weather</title>
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="components/foo.js"></script>
+</head>
+
+<body>
+    <a-scene>
+        <a-plane position="-1 0.5 -3" foo>
+            <a-text position="-0.3 0 0" color="black" value="Click!"></a-text>
+          </a-plane>
+        <a-sky color="#8FD5DE"></a-sky>
+        <a-camera>
+            <a-cursor></a-cursor>
+        </a-camera>
+    </a-scene>
+</body>
+
+</html>
