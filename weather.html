@@ -7,15 +7,42 @@
     <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="components/foo.js"></script>
+    <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
+    <script type="text/javascript">
+    </script>
 </head>
 
 <body>
     <a-scene>
-        <a-plane position="-1 0.5 -3" foo>
+        <a-assets>
+            <img id="grassTexture" src="assets/background-texture-full-frame-artificial-grass-178146895.jpg">
+            <img id="coldTexture" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
+            <img id="cubes" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/cubes.jpg">
+            <img id="planeTexture" src="assets/clickplane.jpg">
+        </a-assets>
+
+        <a-gui-flex-container flex-direction="column" justify-content="center" align-items="normal"
+            component-padding="0.1" opacity="0.7" width="3.5" height="4.5" position="2 2.5 -6" rotation="0 0 0">
+            <a-gui-radio width="2.5" height="0.75" onclick="toggleAction('Brasov')" value="Brasov" margin="0 0 0.05 0"
+                position="2.5 1 -3" active="false">
+            </a-gui-radio>
+            <a-gui-radio width="2.5" height="0.75" onclick="toggleAction('Mecca')" value="Mecca" margin="0 0 0.05 0"
+                position="2.5 2 -3" active="false">
+            </a-gui-radio>
+            <a-gui-radio width="2.5" height="0.75" onclick="toggleAction('Milan')" value="Milan" margin="0 0 0.05 0"
+                position="2.5 3 -3" active="false">
+            </a-gui-radio>
+            <a-gui-radio width="2.5" height="0.75" onclick="toggleAction('Dubai')" value="Dubai" margin="0 0 0.05 0"
+                position="2.5 4 -3" active="false">
+            </a-gui-radio>
+        </a-gui-flex-container>
+
+        <a-plane id="foo" src="#planeTexture" position="-1 0.5 -3" foo>
             <a-text position="-0.3 0 0" color="black" value="Click!"></a-text>
         </a-plane>
-        <a-sky id="sky" color="#8FD5DE"></a-sky>
-        <a-plane color="green" rotation="-90 0 0" width="30" height="30"></a-plane>
+        <a-sky id="sky" color="#8FD5DE" src=""></a-sky>
+        <a-plane src="#grassTexture" color="green" rotation="-90 0 0" width="30" height="30" repeat="30 30"></a-plane>
+
         <a-camera position="0 1 0">
             <a-cursor></a-cursor>
         </a-camera>
