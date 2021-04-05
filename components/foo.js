@@ -1,6 +1,6 @@
 AFRAME.registerComponent("foo", {
 
-  apiLink: "http://api.openweathermap.org/data/2.5/weather?q=",
+  apiLink: "https://api.openweathermap.org/data/2.5/weather?q=",
   apiKey: "&appid=00caa9bdfcc6f16336db1ec60c59f314",
   cityName: '',
 
