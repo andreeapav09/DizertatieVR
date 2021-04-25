@@ -3,17 +3,66 @@
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/super-hands@^3.0.1/dist/super-hands.min.js"></script>
+
+    <script>
+      // forward mouse and touch events to the super-hands entity
+      AFRAME.registerComponent('capture-mouse', {
+        init: function () {
+          this.eventRepeater = this.eventRepeater.bind(this)
+          this.el.sceneEl.addEventListener('loaded', () => {
+            this.el.sceneEl.canvas.addEventListener('mousedown', this.eventRepeater)
+            this.el.sceneEl.canvas.addEventListener('mouseup', this.eventRepeater)
+            this.el.sceneEl.canvas.addEventListener('touchstart', this.eventRepeater)
+            this.el.sceneEl.canvas.addEventListener('touchmove', this.eventRepeater)
+            this.el.sceneEl.canvas.addEventListener('touchend', this.eventRepeater)
+          }, {once: true})
+        },
+        eventRepeater: function (evt) {
+          if (evt.type.startsWith('touch')) {
+            evt.preventDefault()
+            // avoid repeating touchmove because it interferes with look-controls
+            if (evt.type === 'touchmove') { return }
+          }
+          this.el.emit(evt.type, evt.detail)
+        }
+      })
+    </script>
+
   </head>
   
   <body>
+    
     <a-scene>
       <a-assets></a-assets>
-      <a-entity>
-        <a-camera></a-camera>
-        <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: left"></a-entity>
-        <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: right"></a-entity>
+
+      <a-sky id="sky" color="#8FD5DE" src=""></a-sky>
+      <a-plane color="green" rotation="-90 0 0" width="30" height="30" repeat="30 30"></a-plane>
+      <a-entity camera wasd-controls position="0 1 1"
+                capture-mouse
+                raycaster cursor="rayOrigin:mouse"
+                body="type: static; shape: sphere; sphereRadius: 0.001"
+                super-hands="colliderEvent: raycaster-intersection;
+                             colliderEventProperty: els;
+                             colliderEndEvent:raycaster-intersection-cleared;
+                             colliderEndEventProperty: clearedEls;">
       </a-entity>
-      <!-- hover & drag-drop won't have any obvious effect without some additional event handlers or components. See the examples page for more -->
-      <a-box hoverable grabbable stretchable draggable dropppable color="blue" position="0 0 -1"></a-box>
+      <a-sphere hoverable grabbable draggable dropppable color="black" position="0 2.5 -2" radius="0.2" text="trasdas">
+        <a-text color="white" value="11" position="0 0 0.2" width="2" height="2" text="align: center"></a-text>
+      </a-sphere>
+      <a-sphere hoverable grabbable draggable dropppable color="red" position="-1 1.5 -2" radius="0.2" text="trasdas">
+        <a-text color="white" value="2" position="0 0 0.2" width="2" height="2" text="align: center"></a-text>
+      </a-sphere>
+      <a-sphere hoverable grabbable draggable dropppable color="black" position="1 1.5 -2" radius="0.2" text="trasdas">
+        <a-text color="white" value="14" position="0 0 0.2" width="2" height="2" text="align: center"></a-text>
+      </a-sphere>
+      <a-sphere hoverable grabbable draggable dropppable color="black" position="-2 0.5 -2" radius="0.2" text="trasdas">
+        <a-text color="white" value="1" position="0 0 0.2" width="2" height="2" text="align: center"></a-text>
+      </a-sphere>
+      <a-sphere hoverable grabbable draggable dropppable color="black" position="0 0.5 -2" radius="0.2" text="trasdas">
+        <a-text color="white" value="7" position="0 0 0.2" width="2" height="2" text="align: center"></a-text>
+      </a-sphere>
+      <a-sphere hoverable grabbable draggable dropppable color="red" position="2 0.5 -2" radius="0.2" text="trasdas">
+        <a-text color="white" value="15" position="0 0 0.2" width="2" height="2" text="align: center"></a-text>
+      </a-sphere>
     </a-scene>
   </body>
