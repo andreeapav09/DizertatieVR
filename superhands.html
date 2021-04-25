@@ -1,8 +1,8 @@
 <head>
     <title>Most Basic Super-Hands Example</title>
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
+    <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
     <script src="https://unpkg.com/super-hands@^3.0.1/dist/super-hands.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
 
     <script>
       // forward mouse and touch events to the super-hands entity
@@ -37,14 +37,15 @@
 
       <a-sky id="sky" color="#8FD5DE" src=""></a-sky>
       <a-plane color="green" rotation="-90 0 0" width="30" height="30" repeat="30 30"></a-plane>
-      <a-entity camera wasd-controls position="0 1 1"
-                capture-mouse
-                raycaster cursor="rayOrigin:mouse"
-                body="type: static; shape: sphere; sphereRadius: 0.001"
-                super-hands="colliderEvent: raycaster-intersection;
-                             colliderEventProperty: els;
-                             colliderEndEvent:raycaster-intersection-cleared;
-                             colliderEndEventProperty: clearedEls;">
+      <a-entity id="rig" movement-controls position="0 1 1">
+        <a-entity camera wasd-controls capture-mouse
+          raycaster cursor="rayOrigin:mouse"
+          body="type: static; shape: sphere; sphereRadius: 0.001"
+          super-hands="colliderEvent: raycaster-intersection;
+                       colliderEventProperty: els;
+                       colliderEndEvent:raycaster-intersection-cleared;
+                       colliderEndEventProperty: clearedEls;">
+        </a-entity>
       </a-entity>
       <a-sphere hoverable grabbable draggable dropppable color="black" position="0 2.5 -2" radius="0.2" text="trasdas">
         <a-text color="white" value="11" position="0 0 0.2" width="2" height="2" text="align: center"></a-text>
