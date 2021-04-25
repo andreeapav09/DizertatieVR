@@ -38,16 +38,18 @@
       <a-sky id="sky" color="#8FD5DE" src=""></a-sky>
       <a-plane color="green" rotation="-90 0 0" width="30" height="30" repeat="30 30"></a-plane>
       <a-entity id="rig" movement-controls="fly: true" position="0 1 1">
-        <a-entity camera wasd-controls capture-mouse
+        <a-camera></a-camera>
+        <!-- <a-entity camera wasd-controls capture-mouse
           raycaster cursor="rayOrigin:mouse"
-          body="type: static; shape: sphere; sphereRadius: 0.001"/>
-          <!--            super-hands="colliderEvent: raycaster-intersection;
+          body="type: static; shape: sphere; sphereRadius: 0.001"
+          super-hands="colliderEvent: raycaster-intersection;
                        colliderEventProperty: els;
                        colliderEndEvent:raycaster-intersection-cleared;
-                       colliderEndEventProperty: clearedEls;" -->
+                       colliderEndEventProperty: clearedEls;">
+        </a-entity> -->
         
-        <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: left"></a-entity>
-        <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: right"></a-entity>
+                       <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: left"></a-entity>
+                       <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: right"></a-entity>
       </a-entity>
       <a-sphere hoverable grabbable draggable dropppable color="black" position="0 2.5 -2" radius="0.2" text="trasdas">
         <a-text color="white" value="11" position="0 0 0.2" width="2" height="2" text="align: center"></a-text>
