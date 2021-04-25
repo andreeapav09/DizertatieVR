@@ -37,7 +37,7 @@
 
       <a-sky id="sky" color="#8FD5DE" src=""></a-sky>
       <a-plane color="green" rotation="-90 0 0" width="30" height="30" repeat="30 30"></a-plane>
-      <a-entity id="rig" movement-controls position="0 1 1">
+      <a-entity id="rig" movement-controls="fly: true" position="0 1 1">
         <a-entity camera wasd-controls capture-mouse
           raycaster cursor="rayOrigin:mouse"
           body="type: static; shape: sphere; sphereRadius: 0.001"
