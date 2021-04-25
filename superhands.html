@@ -40,11 +40,11 @@
       <a-entity id="rig" movement-controls="fly: true" position="0 1 1">
         <a-entity camera wasd-controls capture-mouse
           raycaster cursor="rayOrigin:mouse"
-          body="type: static; shape: sphere; sphereRadius: 0.001"
-          super-hands="colliderEvent: raycaster-intersection;
+          body="type: static; shape: sphere; sphereRadius: 0.001"/>
+          <!--            super-hands="colliderEvent: raycaster-intersection;
                        colliderEventProperty: els;
                        colliderEndEvent:raycaster-intersection-cleared;
-                       colliderEndEventProperty: clearedEls;">
+                       colliderEndEventProperty: clearedEls;" -->
         </a-entity>
         
         <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: left"></a-entity>
