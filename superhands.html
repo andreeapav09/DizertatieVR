@@ -38,18 +38,28 @@
       <a-sky id="sky" color="#8FD5DE" src=""></a-sky>
       <a-plane color="green" rotation="-90 0 0" width="30" height="30" repeat="30 30"></a-plane>
       <a-entity id="rig" movement-controls="fly: true" position="0 1 1">
-        <a-camera></a-camera>
-        <!-- <a-entity camera wasd-controls capture-mouse
+        
+        <!-- ================= BEGIN -> Mouse Desktop Camera and Controls ================= -->
+
+        <a-entity camera wasd-controls capture-mouse
           raycaster cursor="rayOrigin:mouse"
           body="type: static; shape: sphere; sphereRadius: 0.001"
           super-hands="colliderEvent: raycaster-intersection;
                        colliderEventProperty: els;
                        colliderEndEvent:raycaster-intersection-cleared;
                        colliderEndEventProperty: clearedEls;">
-        </a-entity> -->
-        
+        </a-entity>
+
+        <!-- ================= END -> Mouse Desktop Camera and Controls ================= -->
+
+        <!-- ================= BEGIN -> VR Camera and Controls ================= -->
+
+        <!-- <a-camera></a-camera>
         <a-entity sphere-collider="objects: a-sphere" super-hands hand-controls="hand: left"></a-entity>
-        <a-entity sphere-collider="objects: a-sphere" super-hands hand-controls="hand: right"></a-entity>
+        <a-entity sphere-collider="objects: a-sphere" super-hands hand-controls="hand: right"></a-entity> -->
+
+        <!-- ================= END -> VR Camera and Controls ================= -->
+        
       </a-entity>
       <a-sphere hoverable grabbable draggable dropppable color="black" position="0 2.5 -2" radius="0.2" text="trasdas">
         <a-text color="white" value="11" position="0 0 0.2" width="2" height="2" text="align: center"></a-text>
